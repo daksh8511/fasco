@@ -1,0 +1,24 @@
+.leftline,
+.rightline{
+    position: relative;
+}
+
+.leftline::before{
+    position: absolute;
+    content: '';
+    top: -2px;
+    right: 0;
+    border: 2px solid gray;
+    height: 1px;
+    width: 40px;
+}
+
+.rightline::before{
+    position: absolute;
+    content: '';
+    top: -2px;
+    left: 0;
+    border: 2px solid gray;
+    height: 1px;
+    width: 40px;
+}

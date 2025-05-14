@@ -9,6 +9,8 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const menuHandle = () => setMenu((prev) => !prev);
 
+  const getLengthLS = JSON.parse(localStorage.getItem('items'))
+
   return (
     <nav className="container p-6">
       <div className="flex justify-between items-center">
@@ -22,7 +24,10 @@ const Navbar = () => {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to={'/cart'}><FaShoppingCart size={20} /></Link>
+              <Link className="flex items-center gap-2" to={'/cart'}>
+              <FaShoppingCart size={20} />
+              <span>{getLengthLS == null ? 0 : getLengthLS.length }</span>
+              </Link>
             </li>
           </ul>
           <Link

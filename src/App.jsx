@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from './Pages/Home'
 import SignUp from "./Pages/SignUp/SignUp";
@@ -10,10 +9,11 @@ import Error from "./Pages/Error/Error";
 import Cart from "./Pages/Cart/Cart";
 
 const App = () => {
+
   return (
     <div>
       <Routes>
-        <Route path="/fasco" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />

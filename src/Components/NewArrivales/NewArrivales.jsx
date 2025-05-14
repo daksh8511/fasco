@@ -38,7 +38,7 @@ const NewArrivales = () => {
           {myFilter.length == 0
             ? firstFive.map((item, i) => {
                 return (
-                  <Link to={`/product_page/${item.id}`}>
+                  <Link key={i} to={`/product_page/${item.id}`}>
                   <div className="shadow-xl p-3" key={i}>
                     <div className="w-45 h-50 text-center m-auto">
                       <img

@@ -39,6 +39,7 @@ const SignUp = () => {
                   type="text"
                   placeholder="First Name"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
                 <input
                   type="text"
@@ -49,21 +50,25 @@ const SignUp = () => {
                   type="email"
                   placeholder="Email Address"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
                 <input
                   type="number"
                   placeholder="Phone Number"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
               </form>
               <Link to='/signin' className="bg-black text-white w-full mt-5 flex justify-center py-3 rounded-full">

@@ -79,7 +79,7 @@ const MonthlyDeal = () => {
               return (
                 <SwiperSlide className="bg-white">
                   <Link to={`/product_page/${item.id}`}>
-                    <img src={item.images[0]} alt="" />
+                    <img className="h-60 m-auto" src={item.images[0]} alt="" />
                   </Link>
                 </SwiperSlide>
               );

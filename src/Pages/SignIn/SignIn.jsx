@@ -42,14 +42,16 @@ const SignIn = () => {
                   type="email"
                   placeholder="Email Address"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   className="border-b-2 border-[var(--low-gray-color)] outline-0"
+                  required
                 />
               </form>
-              <Link to="/fasco">
+              <Link to="/">
                 <button className="bg-black text-white w-full mt-5 py-3 rounded-full">
                   Sign In
                 </button>

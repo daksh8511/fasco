@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import svg from "/assets/SVG.png";
-import payment_option from '/assets/payment_option.png'
+import payment_option from "/assets/payment_option.png";
 
-import { FaTruckFast,FaBox } from "react-icons/fa6";
+import { FaTruckFast, FaBox } from "react-icons/fa6";
 
 import { Data } from "../Data";
 import Navbar from "../Components/Navbar/Navbar";
@@ -22,13 +22,29 @@ import NewArrivales from "../Components/NewArrivales/NewArrivales";
 import Subscribe from "../Components/Subscribe/Subscribe";
 
 const ProductPage = () => {
+  document.documentElement.scrollTo({
+    top: 0,
+  });
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const [data, setData] = useState(() => {
+    const storedData = localStorage.getItem("items");
+    return storedData ? JSON.parse(storedData) : [];
+  });
 
   const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams();
   const getProduct = Data.filter((item) => item.id == id);
-  console.log(getProduct[0]);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(data));
+  }, [data]);
+  
+  const handleAddToCart = (item) => {
+    setData([...data, item]);
+  };
 
   return (
     <div>
@@ -93,7 +109,15 @@ const ProductPage = () => {
                 24 people are viewing this right now
               </span>
             </div>
-            <div className="mt-3">
+            <div
+              className={`mt-3 ${
+                getProduct[0].category == "men_accessories"
+                  ? "hidden"
+                  : getProduct[0].category == "women_accessories"
+                  ? "hidden"
+                  : "block"
+              }`}
+            >
               <span className="text-xl font-bold">Size : M</span>
               <ul className="flex items-center gap-5 *:bg-black *:text-white *:p-2 *:px-3 mt-2 *:cursor-pointer *:rounded-xl">
                 <li>M</li>
@@ -119,14 +143,19 @@ const ProductPage = () => {
                 </button>
               </div>
             </div>
-            <button className="block my-4 bg-black text-white px-7 py-3 rounded-2xl cursor-pointer hover:bg-white hover:text-black hover:border duration-200">
+            <button
+              onClick={() => handleAddToCart(getProduct[0])}
+              className="block my-4 bg-black text-white px-7 py-3 rounded-2xl cursor-pointer hover:bg-white hover:text-black hover:border duration-200"
+            >
               Add To Cart
             </button>
             <button className="block my-4 bg-green-600 text-white px-7 py-3 rounded-2xl cursor-pointer hover:bg-white hover:text-green-600 hover:border duration-200">
               Buy Now
             </button>
             <div className="mt-10">
-              <h2 className="uppercase border-b font-semibold !font-mydisplay">Description</h2>
+              <h2 className="uppercase border-b font-semibold !font-mydisplay">
+                Description
+              </h2>
               <p className="my-3 text-[var(--gray-color)]">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
                 beatae sit temporibus atque voluptas perferendis vel eum,
@@ -134,16 +163,16 @@ const ProductPage = () => {
               </p>
             </div>
             <div className="mt-7">
-                <div className="flex gap-3 items-center mb-3">
-                    <FaTruckFast size={20} />
-                    <span>Estimated Delivery : </span>
-                    <span>1 Jan - 4 Jan</span>
-                </div>
-                <div className="flex gap-3 items-center">
-                    <FaBox size={20} />
-                    <span>Free Shipping & Returns : </span>
-                    <span>On All Orders Over $10</span>
-                </div>
+              <div className="flex gap-3 items-center mb-3">
+                <FaTruckFast size={20} />
+                <span>Estimated Delivery : </span>
+                <span>1 Jan - 4 Jan</span>
+              </div>
+              <div className="flex gap-3 items-center">
+                <FaBox size={20} />
+                <span>Free Shipping & Returns : </span>
+                <span>On All Orders Over $10</span>
+              </div>
             </div>
             <img src={payment_option} className="mt-10" alt="" />
           </div>
